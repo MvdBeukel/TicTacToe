@@ -21,26 +21,26 @@ public class UserInterface {
             System.out.println("1. One Player game\n2. Two Player game\n3. Quit");
             String input = scan.nextLine();
 
-            optionsSwitch:
+
             switch (Integer.parseInt(input)) {
                 case 1:
                     gameType = 1;
                     soloGame();
-                    break optionsSwitch;
+                    break;
                 case 2:
                     gameType = 2;
                     duoGame();
-                    break optionsSwitch;
+                    break;
                 case 3:
                     return;
                 default:
                     System.out.println("Invalid option. Please try again.");
-                    break optionsSwitch;
+                    break;
             }
         }
     }
 
-    public void soloGame(){ // to be implemented
+    public void soloGame(){
         while (true) {
             System.out.println("You have chosen to play vs the computer!");
             System.out.print("Name player one? ");
@@ -156,7 +156,6 @@ public class UserInterface {
             System.out.println("4. Show scores\n5. Clear scores");
             String input = scan.nextLine();
             try {
-                optionsSwitch:
                 switch (Integer.parseInt(input)) {
                     case 1:
                         if (gameType == 2) {
@@ -165,7 +164,7 @@ public class UserInterface {
                         } else {
                             playGameOnePlayer();
                         }
-                        break optionsSwitch;
+                        break;
                     case 2:
                         if (gameType == 1) {
                             gameType = 2;
@@ -173,15 +172,15 @@ public class UserInterface {
                         } else {
                             playGameTwoPlayer();
                         }
-                        break optionsSwitch;
+                        break;
                     case 3:
-                        return;
+                        System.exit(0);
                     case 4:
                         printScores();
-                        break optionsSwitch;
+                        break;
                     case 5:
                         clearScore();
-                        break optionsSwitch;
+                        break;
                 }
             } catch  (NumberFormatException eNumForExc) {
                 System.out.println("Invalid option. Please try again.");

@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 
 public class TicTacToe {
@@ -11,7 +10,7 @@ public class TicTacToe {
     private final String[][] myBoard = new String[17][26];
     private boolean playerTurn;
     private ArrayList<Player> players;
-    private int turn = 1;
+    //private int turn = 1;
     private final int[] cornerOptions = {1, 3, 7, 9};
 
     private final int[][] winningConditions = {
@@ -61,9 +60,8 @@ public class TicTacToe {
             return pickRandomOpenSpot();
     }
 
-    public void resetGridTurn(){
+    public void resetGrid(){
         gridSpots = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-        turn = 1;
     }
     public int pickRandomOpenSpot(){
         ArrayList<Integer> tempArrayList = new ArrayList<>();
@@ -190,19 +188,15 @@ public class TicTacToe {
         }
         printBoard();
         toggleTurn();
-        turn++;
     }
 
-    public int getTurn(){
-        return turn;
-    }
 
     public boolean checkWin() {
         for (int[] condition : winningConditions) {
             if (gridSpots[condition[0]] == 1 &&
                     gridSpots[condition[1]] == 1 &&
                     gridSpots[condition[2]] == 1) {
-                resetGridTurn();
+                resetGrid();
                 System.out.println(getPlayerNameInt(0)+ " has won the game!");
                 players.get(0).addWin();
                 return true;
@@ -210,7 +204,7 @@ public class TicTacToe {
             if (gridSpots[condition[0]] == 2 &&
                     gridSpots[condition[1]] == 2 &&
                     gridSpots[condition[2]] == 2) {
-                resetGridTurn();
+                resetGrid();
                 System.out.println(getPlayerNameInt(1) + " has won the game!");
                 players.get(1).addWin();
                 return true;
@@ -245,6 +239,7 @@ public class TicTacToe {
             }
         }
         System.out.println("It's a tie!");
+        resetGrid();
         return true;
     }
 }
